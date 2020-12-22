@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { HomePage } from './HomePage';
+import Navbar from './_components/navbar'
+import BreadCrumb from './_components/breadcrumb'
+import Footer from './_components/footer'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {    
+
+    render() {
+        return (
+          <div className="d-flex flex-column">
+            <div>
+              <Navbar />
+              <BreadCrumb />
+            </div>
+            <div className="jumbotron bg-white">
+                <div className="container">
+                    <div className="col">                        
+                        <Router>
+                            <div>
+                                <Route exact path="/" component={HomePage}/>                                
+                            </div>
+                        </Router>
+                    </div>
+                </div>
+            </div>
+            <Footer />
+          </div>
+        );
+    }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {}
+}
+
+const connectedApp = connect(mapStateToProps)(App);
+export { connectedApp as App }; 
