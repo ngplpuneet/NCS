@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { HomePage } from './HomePage';
 import Navbar from './_components/navbar'
@@ -21,6 +21,9 @@ class App extends React.Component {
                         <Router>
                             <div>
                                 <Route exact path="/" component={HomePage}/>                                
+                                <Route exact path="/index.html">
+                                  <Redirect to="/" />
+                                </Route>
                             </div>
                         </Router>
                     </div>
